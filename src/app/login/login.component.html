@@ -1,0 +1,119 @@
+
+
+<div class="container-flex">
+    
+    <div class="container d-flex justify-content-center login-form rounded shadow pt-5">
+        <mat-tab-group [selectedIndex]="selectedIndex">
+
+       <mat-tab label="Sign up">
+
+      
+            <div class="text-center mt-5 pb-5">
+                <form [formGroup]="registrationForm" (ngsubmit)=onSignup() class="form-group">
+                    <mat-form-field>   
+                        <mat-label>Username<span style="color: red;">*</span></mat-label>
+                        <input matInput id="username" formControlName="username">
+                    </mat-form-field>
+                    <br>
+                    <mat-form-field>   
+                        <mat-label>example@email.com<span style="color: red;">*</span></mat-label>
+                        <input matInput id="email" formControlName="email">
+                    </mat-form-field>
+                    <div *ngIf="registrationForm.get('email').invalid && (registrationForm.get('email').dirty || registrationForm.get('email').touched)" 
+                    class="alert alert-danger"
+                   >
+                    
+                    <span *ngIf="!registrationForm.get('email').valid && registrationForm.get('email').touched">
+                        Valid Email is required
+                    </span>
+                </div>
+                    <br>
+                    <mat-form-field >
+                        <mat-label>password<span style="color: red;">*</span></mat-label>
+                        <input matInput type="password" id="password" formControlName="password">
+                      </mat-form-field>
+                    <br>
+                    <mat-form-field>
+                        <mat-label>Select a role</mat-label>
+                        <mat-select formControlName="role">
+                            <mat-option value="guest">Guest</mat-option>
+                            <mat-option value="admin">Admin</mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                      <div *ngIf="registrationForm.get('role').invalid && (registrationForm.get('role').dirty || registrationForm.get('role').touched)" 
+                      class="alert alert-danger"
+                     >
+                      
+                      <span *ngIf="!registrationForm.get('role').valid && registrationForm.get('role').touched">
+                          Valid Email is required
+                      </span>
+                  </div>
+                      <br>
+                      <mat-form-field >
+                        <mat-label>address</mat-label>
+                        <input matInput id="Address" formControlName="address">
+                      </mat-form-field>
+                    <br>
+                    <mat-form-field >
+                        <mat-label>+91 (88888) (77777) <span style="color: red;">*</span></mat-label>
+                        <input matInput 
+                        type="number"
+                        onKeyPress="if(this.value.length==10) return false;
+                        if( 6 > parseInt(this.value)) return false;"
+                        id="Address" 
+                        formControlName="phone_number">
+                      </mat-form-field>
+                      <div>
+
+                        <div *ngIf="registrationForm.get('phone_number').invalid && registrationForm.get('phone_number').touched" 
+                        class="alert alert-danger"
+                        >
+                        Valid Number is required
+                        <div *ngIf="registrationForm.get('phone_number').value < 7">
+                            Number should start with 7, 8, 9
+                        </div>
+                    </div>
+                </div>
+                    <br>
+                    <button (click)="onSignup()" [disabled]="!registrationForm.valid" mat-raised-button>Sign Up</button>
+                </form>
+                <br>
+                <span>Already got an account? &nbsp;                    
+                    <a (click)="selectedIndex=1"
+                     style="text-decoration: underline;
+                            color:blue;
+                     cursor: pointer;">SignIn</a>
+                </span>
+            </div>
+        </mat-tab>
+        <mat-tab label="Sign In">
+            <div class="text-center mt-5 pt-5 pb-5">
+            <form [formGroup]="signInForm" (ngSubmit)=onSignin()>
+
+            <mat-form-field>
+                <mat-label>Enter your Email</mat-label>
+                <input matInput formControlName="email">
+            </mat-form-field>
+            <br>
+            <mat-form-field>
+                <mat-label>Enter your password</mat-label>
+                <input type="password" matInput formControlName="password">
+            </mat-form-field>
+            <br>
+            <br>
+            <button mat-raised-button (click)="onSignin()">Log In</button>
+            <br>
+            <br>
+            <span>Don't have an account? &nbsp;                    
+                <a (click)="selectedIndex=0"
+                style="text-decoration: underline;
+                            color:blue;
+                     cursor: pointer;">SignUp</a>
+            </span>
+        </form>
+        </div>
+        </mat-tab>
+    </mat-tab-group>
+</div>
+
+</div>

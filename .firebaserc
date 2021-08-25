@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "login-301c8": {
+      "hosting": {
+        "test2": [
+          "login-301c8"
+        ]
+      }
+    }
+  }
+}
